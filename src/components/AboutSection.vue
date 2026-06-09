@@ -17,7 +17,7 @@ const animateStats = () => {
   const targetProj = 50
   const targetClients = 30
 
-  const duration = 1500
+  const duration = 1200
   const stepTime = 30
 
   let currentExp = 0
@@ -62,14 +62,16 @@ onMounted(() => {
   <section id="about" class="section fade-in-section" ref="sectionRef">
     <div class="container">
       <div class="about-grid">
-        <!-- Left: Image Frame with animated border -->
+        <!-- Left: Crisp Minimal Profile Frame -->
         <div class="profile-container">
-          <div class="profile-card">
-            <div class="avatar-glow"></div>
-            <div class="avatar-frame">
-              <div class="avatar-inner">
-                <img src="/sirojbek.jpg" alt="Sirojbek Muxtorov" class="profile-img" />
-              </div>
+          <div class="profile-card bento-card">
+            <div class="mac-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="avatar-inner">
+              <img src="/sirojbek.jpg" alt="Sirojbek Muxtorov" class="profile-img" />
             </div>
           </div>
         </div>
@@ -77,7 +79,7 @@ onMounted(() => {
         <!-- Right: Text Content -->
         <div class="about-content">
           <h2 class="section-title">
-            <span class="gradient-text">{{ t('about.title') }}</span>
+            {{ t('about.title') }}
           </h2>
           <p class="about-text highlight">
             {{ t('about.highlight') }}
@@ -91,16 +93,16 @@ onMounted(() => {
 
           <!-- Stats Row -->
           <div class="stats-row">
-            <div class="stat-card glass-card">
-              <span class="stat-number gradient-text">{{ experience }}+</span>
+            <div class="stat-card bento-card">
+              <span class="stat-number">{{ experience }}+</span>
               <span class="stat-label">{{ t('about.stats.exp') }}</span>
             </div>
-            <div class="stat-card glass-card">
-              <span class="stat-number gradient-text">{{ projects }}+</span>
+            <div class="stat-card bento-card">
+              <span class="stat-number">{{ projects }}+</span>
               <span class="stat-label">{{ t('about.stats.projects') }}</span>
             </div>
-            <div class="stat-card glass-card">
-              <span class="stat-number gradient-text">{{ clients }}+</span>
+            <div class="stat-card bento-card">
+              <span class="stat-number">{{ clients }}+</span>
               <span class="stat-label">{{ t('about.stats.clients') }}</span>
             </div>
           </div>
@@ -114,7 +116,7 @@ onMounted(() => {
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: var(--space-4xl);
+  gap: var(--space-3xl);
   align-items: center;
 }
 
@@ -123,56 +125,38 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
 .profile-card {
-  position: relative;
   width: min(100%, 340px);
-  aspect-ratio: 1;
-}
-
-.avatar-glow {
-  position: absolute;
-  inset: -10px;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-xl);
-  filter: blur(25px);
-  opacity: 0.4;
-  z-index: 1;
-  animation: pulse-glow 3s infinite alternate;
-}
-
-.avatar-frame {
+  padding: 8px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
   position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--radius-xl);
-  padding: 4px;
-  background: var(--gradient-primary);
-  background-size: 200% 200%;
-  animation: gradient-shift 6s ease infinite;
-  z-index: 2;
-  box-shadow: var(--shadow-elevated);
+  display: flex;
+  flex-direction: column;
+}
+
+.mac-dots {
+  display: flex;
+  gap: 6px;
+  padding-bottom: 8px;
+  padding-left: 4px;
+}
+
+.mac-dots span {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-border);
+  border-radius: 50%;
 }
 
 .avatar-inner {
   width: 100%;
-  height: 100%;
-  background: var(--color-bg-secondary);
-  border-radius: calc(var(--radius-xl) - 2px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 4px;
   overflow: hidden;
-  position: relative;
-}
-
-.avatar-inner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(108, 92, 231, 0.1) 0%, transparent 70%);
+  border: 1px solid var(--color-border);
 }
 
 .profile-img {
@@ -183,27 +167,27 @@ onMounted(() => {
 }
 
 .profile-card:hover .profile-img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 /* About content styling */
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
 .about-text {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--color-text-secondary);
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 .about-text.highlight {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 500;
   color: var(--color-text-primary);
-  border-left: 3px solid var(--color-accent-1);
+  border-left: 2px solid var(--color-text-primary);
   padding-left: var(--space-md);
   margin-bottom: var(--space-xs);
 }
@@ -213,34 +197,38 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
-  margin-top: var(--space-xl);
+  margin-top: var(--space-lg);
 }
 
 .stat-card {
-  padding: var(--space-lg) var(--space-md);
+  padding: var(--space-lg) var(--space-sm);
   text-align: center;
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  border-radius: var(--radius-sm);
 }
 
 .stat-number {
-  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-size: 1.8rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  font-family: var(--font-mono);
+  color: var(--color-text-primary);
   line-height: 1.1;
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--color-text-secondary);
-  font-weight: 500;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 992px) {
   .about-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-3xl);
+    gap: var(--space-2xl);
   }
 
   .profile-container {
@@ -251,9 +239,6 @@ onMounted(() => {
 @media (max-width: 576px) {
   .stats-row {
     grid-template-columns: 1fr;
-  }
-  .stat-card {
-    padding: var(--space-md);
   }
 }
 </style>

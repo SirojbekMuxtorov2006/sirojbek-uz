@@ -16,11 +16,16 @@ const filteredProjects = computed(() => {
     return list
   }
   
-  return list.filter(p => {
-    // Matches localized categories
-    return p.category === activeFilter.value
-  })
+  return list.filter(p => p.category === activeFilter.value)
 })
+
+const getTagColorClass = (tag) => {
+  const lower = tag.toLowerCase()
+  if (lower.includes('fastapi') || lower.includes('python') || lower.includes('ai') || lower.includes('openai')) return 'pastel-red'
+  if (lower.includes('react') || lower.includes('next') || lower.includes('js') || lower.includes('ts')) return 'pastel-blue'
+  if (lower.includes('vue') || lower.includes('pinia') || lower.includes('nuxt') || lower.includes('css')) return 'pastel-green'
+  return 'pastel-yellow'
+}
 
 const setFilter = (key) => {
   activeFilter.value = t(`projects.filters.${key}`)
@@ -39,7 +44,6 @@ onMounted(() => {
     observer.observe(sectionRef.value)
   }
   
-  // Set initial filter based on UZ translation
   activeFilter.value = t('projects.filters.all')
 })
 </script>
@@ -68,27 +72,22 @@ onMounted(() => {
         </button>
       </div>
 
-      <!-- Projects Grid -->
+      <!-- Projects Bento Grid -->
       <div class="projects-grid">
         <transition-group name="project-list">
           <div 
             v-for="project in filteredProjects" 
             :key="project.title" 
-            class="project-card glass-card"
+            class="project-card bento-card"
           >
-            <!-- Image Area with customizable gradient fallback -->
-            <div class="project-image" :style="{ background: project.gradient }">
-              <div class="project-overlay">
-                <div class="overlay-actions">
-                  <a href="https://github.com/SirojbekMuxtorov2006" target="_blank" class="overlay-btn" aria-label="Live Demo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  </a>
-                  <a href="https://github.com/SirojbekMuxtorov2006" target="_blank" class="overlay-btn" aria-label="GitHub Repository">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                  </a>
-                </div>
+            <!-- Faux Mac Window Frame Chrome -->
+            <div class="mac-frame">
+              <div class="mac-dots">
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
-              <div class="project-tag-badge">{{ project.category }}</div>
+              <span class="mac-title">{{ project.category }}</span>
             </div>
 
             <!-- Card Info -->
@@ -97,9 +96,25 @@ onMounted(() => {
               <p class="project-desc">{{ project.desc }}</p>
               
               <div class="tags-container">
-                <span v-for="tag in project.tags" :key="tag" class="tag">
+                <span 
+                  v-for="tag in project.tags" 
+                  :key="tag" 
+                  :class="['tag', getTagColorClass(tag)]"
+                >
                   {{ tag }}
                 </span>
+              </div>
+
+              <!-- Inline Actions -->
+              <div class="project-actions">
+                <a href="https://github.com/SirojbekMuxtorov2006" target="_blank" class="action-btn">
+                  <span>Demo</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+                </a>
+                <a href="https://github.com/SirojbekMuxtorov2006" target="_blank" class="action-btn">
+                  <span>GitHub</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a96,96,0,1,1-96-96A96,96,0,0,1,224,128Z" opacity="0.2"></path><path d="M208,104a80,80,0,0,0-160,0c0,34,18.84,63.63,47.16,79.43-1.86,4.69-3.79,9.45-5.83,14.2A12,12,0,0,0,80.37,213l29.47,11.8A12,12,0,0,0,125,217.43l3.66-22,3.66,22A12,12,0,0,0,146.16,224.8l29.47-11.8a12,12,0,0,0,11.05-19.41c-2-4.75-4-9.51-5.83-14.2A80.12,80.12,0,0,0,208,104Zm-80,98.2L116,128.2l-12,50.11v11.8L128,202.2Zm44-19.89L160,202.2l0-12.09,12-50.11ZM192,104a64,64,0,0,1-128,0c0-26.68,16.53-48,40-48s40,21.32,40,48S165.47,152,192,104Z"></path></svg>
+                </a>
               </div>
             </div>
           </div>
@@ -111,50 +126,47 @@ onMounted(() => {
 
 <style scoped>
 .section-header {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: left;
   margin-bottom: var(--space-2xl);
 }
 
 /* Filter buttons */
 .filter-container {
   display: flex;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-3xl);
+  justify-content: flex-start;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  padding: 0.6rem 1.4rem;
-  border-radius: var(--radius-full);
-  background: var(--color-bg-glass);
-  border: 1px solid var(--color-border-glass);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
   color: var(--color-text-secondary);
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: all var(--transition-fast);
 }
 
 .filter-btn:hover {
   color: var(--color-text-primary);
-  border-color: var(--color-accent-1);
+  border-color: var(--color-border-hover);
 }
 
 .filter-btn.active {
-  background: var(--gradient-primary);
-  color: #fff;
+  background: var(--color-text-primary);
+  color: var(--color-bg-secondary);
   border-color: transparent;
-  box-shadow: var(--shadow-glow);
 }
 
 /* Grid Layout */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: var(--space-2xl);
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-lg);
   position: relative;
 }
 
@@ -163,75 +175,37 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-secondary);
 }
 
-.project-image {
-  height: 220px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-}
-
-.project-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 10, 15, 0.85);
-  backdrop-filter: blur(4px);
+.mac-frame {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--transition-base);
+  padding: 10px 16px;
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border);
 }
 
-.project-card:hover .project-overlay {
-  opacity: 1;
-}
-
-.overlay-actions {
+.mac-dots {
   display: flex;
-  gap: var(--space-lg);
-  transform: translateY(20px);
-  transition: transform var(--transition-base);
+  gap: 5px;
 }
 
-.project-card:hover .overlay-actions {
-  transform: translateY(0);
-}
-
-.overlay-btn {
-  width: 50px;
-  height: 50px;
+.mac-dots span {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--gradient-primary);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform var(--transition-spring), box-shadow var(--transition-base);
-  box-shadow: var(--shadow-glow);
+  background-color: var(--color-border-hover);
 }
 
-.overlay-btn:hover {
-  transform: scale(1.15);
-  box-shadow: var(--shadow-glow-lg);
-}
-
-.project-tag-badge {
-  position: absolute;
-  top: var(--space-md);
-  right: var(--space-md);
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
+.mac-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .project-info {
@@ -243,13 +217,14 @@ onMounted(() => {
 }
 
 .project-title {
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 800;
   letter-spacing: -0.01em;
+  color: var(--color-text-primary);
 }
 
 .project-desc {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: var(--color-text-secondary);
   line-height: 1.6;
 }
@@ -257,34 +232,77 @@ onMounted(() => {
 .tags-container {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
+  gap: 6px;
   margin-top: auto;
+  margin-bottom: var(--space-md);
 }
 
 .tag {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--color-border-glass);
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Localized Color overrides for Spot Pastels */
+.pastel-red {
+  background-color: var(--color-accent-red-bg);
+  color: var(--color-accent-red-text);
+}
+
+.pastel-blue {
+  background-color: var(--color-accent-blue-bg);
+  color: var(--color-accent-blue-text);
+}
+
+.pastel-green {
+  background-color: var(--color-accent-green-bg);
+  color: var(--color-accent-green-text);
+}
+
+.pastel-yellow {
+  background-color: var(--color-accent-yellow-bg);
+  color: var(--color-accent-yellow-text);
+}
+
+/* Actions */
+.project-actions {
+  display: flex;
+  gap: var(--space-md);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-md);
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.action-btn:hover {
+  color: var(--color-text-primary);
 }
 
 /* Vue List Transitions */
 .project-list-enter-active,
 .project-list-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.4s ease;
 }
 
 .project-list-enter-from {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.97);
 }
 
 .project-list-leave-to {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.97);
   position: absolute;
   width: 100%;
 }

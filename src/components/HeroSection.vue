@@ -6,25 +6,23 @@ const t = inject('t')
 
 <template>
   <section class="hero-section">
-    <!-- Animated background orbs -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="dots-overlay"></div>
+    <!-- Subtle spotlight warm overlay -->
+    <div class="spotlight"></div>
+    <div class="grid-texture"></div>
 
     <div class="container hero-container">
       <div class="hero-content">
         <div class="greeting-badge">
-          <span class="pulse-dot"></span>
-          <span>{{ t('hero.badge') }}</span>
+          <span class="badge-dot"></span>
+          <span class="badge-text">{{ t('hero.badge') }}</span>
         </div>
 
         <h1 class="hero-title">
-          {{ t('hero.title') }} <span class="gradient-text animate-gradient">Sirojbek</span>
+          {{ t('hero.title') }} <span class="serif-name">Sirojbek.</span>
         </h1>
 
         <h2 class="hero-subtitle">
-          <span>{{ t('hero.subtitle') }}</span>
+          {{ t('hero.subtitle') }}
         </h2>
 
         <p class="hero-description">
@@ -34,34 +32,30 @@ const t = inject('t')
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">
             <span>{{ t('hero.cta_projects') }}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
           </a>
           <a href="#contact" class="btn btn-outline">{{ t('hero.cta_contact') }}</a>
         </div>
 
-        <!-- Social Icons -->
+        <!-- Social Icons (Thick Stroke / Phosphor Style) -->
         <div class="social-links">
           <a href="https://github.com/SirojbekMuxtorov2006" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M208,104a80,80,0,0,0-160,0c0,34,18.84,63.63,47.16,79.43-1.86,4.69-3.79,9.45-5.83,14.2A12,12,0,0,0,80.37,213l29.47,11.8A12,12,0,0,0,125,217.43l3.66-22,3.66,22A12,12,0,0,0,146.16,224.8l29.47-11.8a12,12,0,0,0,11.05-19.41c-2-4.75-4-9.51-5.83-14.2A80.12,80.12,0,0,0,208,104Zm-80,98.2L116,128.2l-12,50.11v11.8L128,202.2Zm44-19.89L160,202.2l0-12.09,12-50.11ZM192,104a64,64,0,0,1-128,0c0-26.68,16.53-48,40-48s40,21.32,40,48S165.47,152,192,104Z"></path></svg>
           </a>
           <a href="https://t.me/sirojbekmuxtorov" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Telegram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M236.88,26.19a9.63,9.63,0,0,0-9.67-.08L18.06,134.19a9.63,9.63,0,0,0,.14,17l60.13,29.43a8,8,0,0,0,9.08-1.57L198,89c1.9-1.9,3.8-3.8,1.9-5.7s-3.8,0-5.7,1.9L83.74,186a8,8,0,0,0-2.31,4.78l-7.79,46.73a9.63,9.63,0,0,0,15.65,8.53l35.84-29.46a8,8,0,0,0,4.78-2.31l72.23-72.23a9.63,9.63,0,0,0-5.26-15.68Z"></path></svg>
           </a>
           <a href="https://www.linkedin.com/in/sirojbek-muxtorov/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M224,40V216a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V40A16,16,0,0,1,48,24H208A16,16,0,0,1,224,40ZM96,96a8,8,0,0,0-16,0v80a8,8,0,0,0,16,0Zm-8-32a12,12,0,1,0-12-12A12,12,0,0,0,88,64Zm88,32c-15.42,0-25,8-28,13V96a8,8,0,0,0-16,0v80a8,8,0,0,0,16,0v-40c0-13,6-20,16-20s16,7,16,20v40a8,8,0,0,0,16,0V128C192,108,187.42,96,176,96Z"></path></svg>
           </a>
         </div>
       </div>
     </div>
 
-    <!-- Scroll indicator -->
-    <a href="#about" class="scroll-indicator" aria-label="Scroll to About">
+    <!-- Scroll down indicator -->
+    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
       <div class="mouse">
-        <div class="wheel"></div>
-      </div>
-      <div class="arrows">
-        <span></span>
-        <span></span>
+        <span class="wheel"></span>
       </div>
     </a>
   </section>
@@ -76,55 +70,34 @@ const t = inject('t')
   overflow: hidden;
   background-color: var(--color-bg-primary);
   padding-top: 80px;
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* Background Animated Blobs */
-.blob {
+.spotlight {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: 60vh;
+  background: radial-gradient(circle, rgba(230, 225, 215, 0.25) 0%, transparent 70%);
   z-index: 1;
-  opacity: 0.25;
-  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
-.blob-1 {
-  top: 10%;
-  left: 10%;
-  width: 400px;
-  height: 400px;
-  background: var(--color-accent-1);
-  animation: float 18s infinite ease-in-out;
+:root.dark-mode .spotlight {
+  background: radial-gradient(circle, rgba(40, 40, 40, 0.4) 0%, transparent 70%);
 }
 
-.blob-2 {
-  bottom: 10%;
-  right: 15%;
-  width: 500px;
-  height: 500px;
-  background: var(--color-accent-2);
-  animation: float 22s infinite ease-in-out alternate;
-}
-
-.blob-3 {
-  top: 40%;
-  left: 60%;
-  width: 350px;
-  height: 350px;
-  background: var(--color-accent-3);
-  animation: float 15s infinite ease-in-out 3s;
-}
-
-.dots-overlay {
+.grid-texture {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image: linear-gradient(var(--color-border) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.15;
   z-index: 2;
-}
-
-:root.light-mode .dots-overlay {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  pointer-events: none;
 }
 
 .hero-container {
@@ -133,131 +106,111 @@ const t = inject('t')
 }
 
 .hero-content {
-  max-width: 800px;
-  animation: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 760px;
+  animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .greeting-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  background: var(--color-bg-glass);
-  border: 1px solid var(--color-border-glass);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: var(--space-xl);
+  background: var(--color-accent-green-bg);
+  border: 1px solid rgba(52, 101, 56, 0.15);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-lg);
 }
 
-.pulse-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #10b981;
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-green-text);
   border-radius: 50%;
-  box-shadow: 0 0 10px #10b981;
-  animation: pulse-glow 2s infinite;
+}
+
+.badge-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent-green-text);
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
-  margin-bottom: var(--space-md);
+  font-size: clamp(3rem, 9vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-primary);
 }
 
-.animate-gradient {
-  background-size: 200% auto;
-  animation: gradient-shift 6s linear infinite;
+.serif-name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
 }
 
 .hero-subtitle {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 500;
+  color: var(--color-text-secondary);
   margin-bottom: var(--space-lg);
-  color: var(--color-accent-3);
-  min-height: auto;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
 }
 
 .hero-description {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.8vw, 1.15rem);
   color: var(--color-text-secondary);
   line-height: 1.7;
-  margin-bottom: var(--space-3xl);
-  max-width: 650px;
+  margin-bottom: var(--space-2xl);
 }
 
 .hero-actions {
   display: flex;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   flex-wrap: wrap;
-  margin-bottom: var(--space-4xl);
+  margin-bottom: var(--space-3xl);
 }
 
-/* Button Component */
+/* Button */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: 1rem 2rem;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: 1rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: all var(--transition-fast);
 }
 
 .btn-primary {
-  background: var(--gradient-primary);
-  color: #fff;
+  background: var(--color-text-primary);
+  color: var(--color-bg-secondary);
   border: none;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-glow);
-}
-
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transform: translateX(-100%);
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-glow-lg);
+  background: #333;
+  transform: scale(0.98);
 }
 
-.btn-primary:hover::after {
-  animation: shimmer 1.5s infinite;
-}
-
-.btn-primary svg {
-  transition: transform var(--transition-fast);
-}
-
-.btn-primary:hover svg {
-  transform: translateX(4px);
+:root.dark-mode .btn-primary:hover {
+  background: #ccc;
 }
 
 .btn-outline {
   background: transparent;
   color: var(--color-text-primary);
-  border: 1px solid var(--color-border-glass);
+  border: 1px solid var(--color-border);
 }
 
 .btn-outline:hover {
-  background: var(--color-bg-glass);
-  border-color: var(--color-accent-3);
-  transform: translateY(-3px);
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+  border-color: var(--color-border-hover);
+  background: var(--color-bg-secondary);
+  transform: scale(0.98);
 }
 
 /* Social links */
@@ -267,105 +220,69 @@ const t = inject('t')
 }
 
 .social-icon {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: var(--color-bg-glass);
-  border: 1px solid var(--color-border-glass);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
   color: var(--color-text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-spring);
+  transition: all var(--transition-fast);
 }
 
 .social-icon:hover {
   color: var(--color-text-primary);
-  transform: translateY(-5px) scale(1.1);
-  border-color: var(--color-accent-1);
-  box-shadow: var(--shadow-glow);
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
 }
 
 /* Scroll indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-xs);
-  z-index: 10;
-  opacity: 0.7;
+  opacity: 0.5;
   transition: opacity var(--transition-fast);
+  z-index: 5;
 }
 
 .scroll-indicator:hover {
-  opacity: 1;
+  opacity: 0.9;
 }
 
 .mouse {
-  width: 26px;
-  height: 42px;
-  border: 2px solid var(--color-text-secondary);
-  border-radius: 20px;
+  width: 20px;
+  height: 32px;
+  border: 1.5px solid var(--color-text-muted);
+  border-radius: 10px;
   position: relative;
+  display: block;
 }
 
 .wheel {
-  width: 4px;
-  height: 8px;
-  background-color: var(--color-accent-3);
+  width: 3px;
+  height: 6px;
+  background-color: var(--color-text-primary);
   border-radius: 2px;
   position: absolute;
-  top: 8px;
+  top: 6px;
   left: 50%;
   transform: translateX(-50%);
-  animation: float 1.5s infinite ease-in-out;
+  animation: scroll-wheel 1.8s infinite ease-in-out;
 }
 
-.arrows {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@keyframes scroll-wheel {
+  0% { transform: translate(-50%, 0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translate(-50%, 8px); opacity: 0; }
 }
 
-.arrows span {
-  display: block;
-  width: 8px;
-  height: 8px;
-  border-bottom: 2px solid var(--color-text-muted);
-  border-right: 2px solid var(--color-text-muted);
-  transform: rotate(45deg);
-  margin: -2px;
-  animation: arrow-bounce 2s infinite;
-}
-
-.arrows span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-@keyframes arrow-bounce {
-  0% {
-    opacity: 0;
-    transform: rotate(45deg) translate(-5px, -5px);
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    padding-top: 100px;
-  }
+@media (max-width: 576px) {
   .hero-actions {
-    gap: var(--space-md);
+    width: 100%;
   }
   .btn {
     width: 100%;

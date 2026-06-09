@@ -9,29 +9,29 @@ const categories = ['aiml', 'backend', 'frontend', 'devops']
 
 const skillsData = {
   aiml: [
-    { name: 'PyTorch & TensorFlow', level: 90, desc: 'Model architectures, CNNs, model training & optimization' },
-    { name: 'NLP & LLMs', level: 85, desc: 'Transformers, LangChain, OpenAI APIs, Vector Embeddings' },
-    { name: 'Computer Vision', level: 80, desc: 'YOLO, OpenCV, image classification, target detection' },
-    { name: 'MLOps', level: 75, desc: 'MLflow, Weights & Biases, model version control, DVC' },
-    { name: 'Data Processing', level: 90, desc: 'pandas, NumPy, Polars, ETL pipelines, data visualization' }
+    { name: 'PyTorch & TensorFlow', level: 90, desc: 'Model architectures, CNNs, model training & optimization', colorClass: 'pastel-red' },
+    { name: 'NLP & LLMs', level: 85, desc: 'Transformers, LangChain, OpenAI APIs, Vector Embeddings', colorClass: 'pastel-red' },
+    { name: 'Computer Vision', level: 80, desc: 'YOLO, OpenCV, image classification, target detection', colorClass: 'pastel-red' },
+    { name: 'MLOps', level: 75, desc: 'MLflow, Weights & Biases, model version control, DVC', colorClass: 'pastel-red' },
+    { name: 'Data Processing', level: 90, desc: 'pandas, NumPy, Polars, ETL pipelines, data visualization', colorClass: 'pastel-red' }
   ],
   backend: [
-    { name: 'Python (FastAPI, Django)', level: 95, desc: 'REST APIs, Async programming, WebSockets, Celery' },
-    { name: 'Node.js (NestJS, Express)', level: 85, desc: 'Microservices, JWT auth, WebSockets communication' },
-    { name: 'Languages (Go, Rust, C++)', level: 75, desc: 'System-level and concurrent backend code' },
-    { name: 'API Development', level: 90, desc: 'GraphQL, Event-Driven Architectures, REST endpoints' }
+    { name: 'Python (FastAPI, Django)', level: 95, desc: 'REST APIs, Async programming, WebSockets, Celery', colorClass: 'pastel-blue' },
+    { name: 'Node.js (NestJS, Express)', level: 85, desc: 'Microservices, JWT auth, WebSockets communication', colorClass: 'pastel-blue' },
+    { name: 'Languages (Go, Rust, C++)', level: 75, desc: 'System-level and concurrent backend code', colorClass: 'pastel-blue' },
+    { name: 'API Development', level: 90, desc: 'GraphQL, Event-Driven Architectures, REST endpoints', colorClass: 'pastel-blue' }
   ],
   frontend: [
-    { name: 'React.js & Next.js', level: 85, desc: 'Hooks, React Query, Context, Tailwind, Server Components' },
-    { name: 'Vue.js & Nuxt.js', level: 90, desc: 'SPA/SSR rendering, Composition API, state management' },
-    { name: 'TypeScript & JavaScript', level: 90, desc: 'Strict typing, modern ES6+, DOM manipulation' },
-    { name: 'HTML5 & CSS3 / SCSS', level: 95, desc: 'Responsive design, layouts, smooth keyframe animations' }
+    { name: 'React.js & Next.js', level: 85, desc: 'Hooks, React Query, Context, Tailwind, Server Components', colorClass: 'pastel-green' },
+    { name: 'Vue.js & Nuxt.js', level: 90, desc: 'SPA/SSR rendering, Composition API, state management', colorClass: 'pastel-green' },
+    { name: 'TypeScript & JavaScript', level: 90, desc: 'Strict typing, modern ES6+, DOM manipulation', colorClass: 'pastel-green' },
+    { name: 'HTML5 & CSS3 / SCSS', level: 95, desc: 'Responsive design, layouts, smooth keyframe animations', colorClass: 'pastel-green' }
   ],
   devops: [
-    { name: 'PostgreSQL & Redis', level: 90, desc: 'pgvector, database index optimization, cache layers' },
-    { name: 'Vector DBs (Weaviate, Pinecone)', level: 80, desc: 'Semantic search, similarity databases for AI' },
-    { name: 'Docker & Kubernetes', level: 85, desc: 'Containerization, cluster management, deployment' },
-    { name: 'CI/CD & Monitoring', level: 80, desc: 'GitHub Actions, Prometheus, Grafana, Sentry logs' }
+    { name: 'PostgreSQL & Redis', level: 90, desc: 'pgvector, database index optimization, cache layers', colorClass: 'pastel-yellow' },
+    { name: 'Vector DBs (Weaviate, Pinecone)', level: 80, desc: 'Semantic search, similarity databases for AI', colorClass: 'pastel-yellow' },
+    { name: 'Docker & Kubernetes', level: 85, desc: 'Containerization, cluster management, deployment', colorClass: 'pastel-yellow' },
+    { name: 'CI/CD & Monitoring', level: 80, desc: 'GitHub Actions, Prometheus, Grafana, Sentry logs', colorClass: 'pastel-yellow' }
   ]
 }
 
@@ -62,7 +62,7 @@ onMounted(() => {
         </p>
       </div>
 
-      <!-- Category Filter Tabs -->
+      <!-- Category Filter Tabs (Minimal Outline) -->
       <div class="category-tabs">
         <button 
           v-for="cat in categories" 
@@ -74,17 +74,20 @@ onMounted(() => {
         </button>
       </div>
 
-      <!-- Skills Display Grid -->
+      <!-- Bento Box Feature Grid -->
       <div class="skills-display-container">
         <transition name="fade-slide" mode="out-in">
           <div :key="activeCategory" class="skills-grid">
             <div 
               v-for="(skill, index) in skillsData[activeCategory]" 
               :key="skill.name" 
-              class="skill-card glass-card"
+              class="skill-card bento-card"
             >
               <div class="skill-info">
-                <h3 class="skill-name">{{ skill.name }}</h3>
+                <div class="skill-title-block">
+                  <span :class="['dot-indicator', skill.colorClass]"></span>
+                  <h3 class="skill-name">{{ skill.name }}</h3>
+                </div>
                 <span class="skill-level">{{ skill.level }}%</span>
               </div>
               
@@ -103,50 +106,47 @@ onMounted(() => {
 
 <style scoped>
 .section-header {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: left;
   margin-bottom: var(--space-2xl);
 }
 
 /* Category Tabs */
 .category-tabs {
   display: flex;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-3xl);
+  justify-content: flex-start;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
   flex-wrap: wrap;
 }
 
 .category-tab-btn {
-  padding: 0.8rem 1.6rem;
-  border-radius: var(--radius-md);
-  background: var(--color-bg-glass);
-  border: 1px solid var(--color-border-glass);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
   color: var(--color-text-secondary);
+  font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: all var(--transition-fast);
 }
 
 .category-tab-btn:hover {
   color: var(--color-text-primary);
-  border-color: var(--color-accent-1);
+  border-color: var(--color-border-hover);
 }
 
 .category-tab-btn.active {
-  background: var(--gradient-primary);
-  color: #fff;
+  background: var(--color-text-primary);
+  color: var(--color-bg-secondary);
   border-color: transparent;
-  box-shadow: var(--shadow-glow);
 }
 
 /* Grid Layout */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-xl);
+  gap: var(--space-lg);
 }
 
 /* Card Styling */
@@ -155,13 +155,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
-}
-
-.skill-card:hover {
-  border-color: rgba(108, 92, 231, 0.3);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-glow);
+  border-radius: var(--radius-md);
 }
 
 .skill-info {
@@ -170,46 +164,56 @@ onMounted(() => {
   align-items: center;
 }
 
+.skill-title-block {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.dot-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pastel-red { background-color: var(--color-accent-red-text); }
+.pastel-blue { background-color: var(--color-accent-blue-text); }
+.pastel-green { background-color: var(--color-accent-green-text); }
+.pastel-yellow { background-color: var(--color-accent-yellow-text); }
+
 .skill-name {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--color-text-primary);
+  letter-spacing: -0.01em;
 }
 
 .skill-level {
   font-family: var(--font-mono);
-  font-size: 0.95rem;
-  color: var(--color-accent-3);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
   font-weight: 600;
 }
 
 .skill-progress-bg {
   width: 100%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.05);
+  height: 4px;
+  background: var(--color-border);
   border-radius: var(--radius-full);
   overflow: hidden;
 }
 
-:root.light-mode .skill-progress-bg {
-  background: rgba(0, 0, 0, 0.05);
-}
-
 .skill-progress-fill {
   height: 100%;
-  background: var(--gradient-primary);
+  background: var(--color-text-primary);
   border-radius: var(--radius-full);
   width: 0;
   transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Trigger animation on visible state */
-.fade-in-section.visible .skill-progress-fill {
-  /* Dynamic style will apply the actual width, so this triggers transition */
-}
-
 .skill-desc {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-text-secondary);
   line-height: 1.5;
 }
@@ -217,16 +221,16 @@ onMounted(() => {
 /* Vue Slide Transitions */
 .fade-slide-enter-active,
 .fade-slide-leave-active {
-  transition: all var(--transition-base);
+  transition: all var(--transition-fast);
 }
 
 .fade-slide-enter-from {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(10px);
 }
 
 .fade-slide-leave-to {
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(-10px);
 }
 </style>

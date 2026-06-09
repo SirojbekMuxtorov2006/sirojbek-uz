@@ -38,10 +38,10 @@ const changeLanguage = (lang) => {
 watch(theme, (newTheme) => {
   localStorage.setItem('portfolio-theme', newTheme)
   const root = document.documentElement
-  if (newTheme === 'light') {
-    root.classList.add('light-mode')
+  if (newTheme === 'dark') {
+    root.classList.add('dark-mode')
   } else {
-    root.classList.remove('light-mode')
+    root.classList.remove('dark-mode')
   }
 }, { immediate: true })
 
